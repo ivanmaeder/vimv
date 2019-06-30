@@ -1,30 +1,73 @@
-# Vi move (vimv) - rename the files in a directory using the vi text editor
+# vimv - rename multiple files inside a text editor
 
-A utility to help rename various files at once, using a text editor. This script will open the list of files in a directory in a text editor (by default, vi). Then any changes made in the editor will be reflected in the filesystem (the files in the directory will be renamed to the names saved in the editor).
+`vimv` makes it easy to rename various files by letting you make the changes inside a text editor.
 
-## Documentation
-### Installation
+## How does it work?
 
-Unix/Linux with Python:
+Run `vimv` from the command-line:
 
-1. Copy to `/usr/local/bin` or elsewhere on `$PATH`
-2. Rename to `vimv`
-3. Make executable
+```
+vimv
+```
 
-### Usage
-On the command-line:
+This will open `vi` with the list of files in the current directory.
 
-1. Type `vimv` to open the list of files in the current directory
-2. Make the changes, save and quit
+Change the filenames, save and exit.
 
-The filenames are updated when you quit. If you delete a name (leave a blank line where a filename used to be), the file will be deleted (this will not work with directories). A log of the changes is written to `~/.vimv_history`.
+The files will be renamed when you exit `vi`.
 
-### Advanced
+## Installation
 
-Multiple directory listings can be updated in sequence, e.g., like this:
+Requires Python (run `python -V` to check).
 
-    $vimv . ./dir1 ./dir2
+On Unix, Linux or macOS:
 
-Files can be moved between directories, relative names can be given in the file; double quotes should not be used in the file.
+1. Download the script `vimv.py`
+2. Copy it to `/usr/local/bin/`
+3. Rename it to `vimv`
+4. Make it executable (`chmod +x /usr/local/bin/vimv`)
 
-For more details run `vimv --help`.
+`vimv` has NOT been tested on Windows.
+
+You may need to run `chmod` as super user:
+
+```
+sudo chmod +x /usr/local/bin/vimv
+```
+
+## Usage
+To use a different editor, e.g., the `pico` editor:
+
+```
+vimv -e pico
+```
+
+To rename ALL files in a directory, including hidden files:
+
+```
+vimv -a
+```
+
+To rename files in a different directory, e.g., in the `/home` directory:
+
+```
+vimv /home
+```
+
+To see the full list of options available:
+
+```
+vimv --help
+```
+
+### Deleting files
+
+Delete files by leaving a blank name where a filename used to be.
+
+### Debugging and history
+
+A log of the changes is written to `~/.vimv_history`.
+
+### Warning
+
+Don't use filenames with double quotes.
