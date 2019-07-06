@@ -16,7 +16,7 @@ Change the filenames, save and exit.
 
 The files will be renamed when you exit `vi`.
 
-[![Using a text editor to rename multiple files at once](https://img.youtube.com/vi/woE6N9J6NeU/0.jpg)](https://www.youtube.com/watch?v=woE6N9J6NeU)
+[![Using a text editor to rename multiple files at once](./assets/video_screenshot.png)](https://www.youtube.com/watch?v=woE6N9J6NeU)
 
 ## Installation
 
