@@ -33,7 +33,7 @@ from logging.handlers import RotatingFileHandler
 from optparse import OptionParser
 from tempfile import NamedTemporaryFile
 
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 HISTORY_FILE = '~/.vimv_history'
 
@@ -85,18 +85,18 @@ def main():
         ls.sort()
 
         #ls > temp_file
-        with NamedTemporaryFile(delete=False) as temp_file:
+        with NamedTemporaryFile(mode='w', delete=False) as temp_file:
             temp_file.write('\n'.join(ls) + '\n') #\n at EOF for vi compat
 
         if options.verbose:
-            print 'Directory "%s"' % dir
+            print('Directory "%s"' % dir)
 
         #vi temp_file
         os.system('%s %s' % (options.editor, temp_file.name))
 
         #read temp_file, then delete
         try:
-            with open(temp_file.name, 'rb') as f:
+            with open(temp_file.name, 'r') as f:
                 file_contents = f.read().split('\n')[:-1]
         except IOError as e:
             parser.error('Unable to re-open %s: %s' % (temp_file.name, e))
@@ -127,7 +127,7 @@ def main():
             logger.debug('"%s" -> "%s"' % (source, target))
 
             if options.verbose:
-                print 'mv %s -> %s' % (source, target)
+                print('mv %s -> %s' % (source, target))
 
     return 0
 
