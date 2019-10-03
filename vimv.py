@@ -21,7 +21,7 @@ A utility to help rename various files at once, using a text editor. This
 script will open the list of files in a directory in a text editor (by
 default, vi). Then any changes made in the editor will be reflected in the
 filesystem (the files in the directory will be renamed to the names saved
-in the editor). 
+in the editor).
 """
 
 import datetime
@@ -36,8 +36,15 @@ from tempfile import NamedTemporaryFile
 __version__ = '0.2.2'
 
 HISTORY_FILE = '~/.vimv_history'
+EDITOR = 'vi'
+
 
 def main():
+
+    global EDITOR
+    if 'EDITOR' in os.environ:
+        EDITOR = os.environ['EDITOR']
+
     parser = OptionParser(usage='%prog [options] [directory ...]', version=__version__)
 
     #[options]
@@ -48,7 +55,7 @@ def main():
 
     parser.add_option('-e',
                       '--editor',
-                      default='vi',
+                      default=EDITOR,
                       help = 'Use an alternative editor (e.g., pico).')
 
     parser.add_option('-v',
