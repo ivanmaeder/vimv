@@ -36,14 +36,14 @@ from tempfile import NamedTemporaryFile
 __version__ = '0.2.2'
 
 HISTORY_FILE = '~/.vimv_history'
-EDITOR = 'vi'
 
 
 def main():
 
-    global EDITOR
     if 'EDITOR' in os.environ:
-        EDITOR = os.environ['EDITOR']
+        editor = os.environ['EDITOR']
+    else:
+        editor = 'vi'
 
     parser = OptionParser(usage='%prog [options] [directory ...]', version=__version__)
 
@@ -55,7 +55,7 @@ def main():
 
     parser.add_option('-e',
                       '--editor',
-                      default=EDITOR,
+                      default=editor,
                       help = 'Use an alternative editor (e.g., pico).')
 
     parser.add_option('-v',
