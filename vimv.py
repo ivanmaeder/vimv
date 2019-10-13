@@ -33,7 +33,7 @@ from logging.handlers import RotatingFileHandler
 from optparse import OptionParser
 from tempfile import NamedTemporaryFile
 
-__version__ = '0.2.2'
+__version__ = '0.3.0'
 
 HISTORY_FILE = '~/.vimv_history'
 
