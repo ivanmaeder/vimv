@@ -15,13 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Vi move (vimv).
+"""vi move (vimv).
 
-A utility to help rename various files at once, using a text editor. This
-script will open the list of files in a directory in a text editor (by
-default, vi). Then any changes made in the editor will be reflected in the
-filesystem (the files in the directory will be renamed to the names saved
-in the editor).
+Rename (or delete) files inside vi(m), or another text editor.
 """
 
 import datetime
@@ -33,18 +29,18 @@ from logging.handlers import RotatingFileHandler
 from optparse import OptionParser
 from tempfile import NamedTemporaryFile
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 HISTORY_FILE = '~/.vimv_history'
 
 
+# TODO run this through black or ruff
+# TODO add Mypy type hints
+# TODO organize imports
 def main():
+    editor = os.environ["EDITOR"] if "EDITOR" in os.environ else "vi"  # TODO test with Pytest
 
-    if 'EDITOR' in os.environ:
-        editor = os.environ['EDITOR']
-    else:
-        editor = 'vi'
-
+    # TODO implement with argparse
     parser = OptionParser(usage='%prog [options] [directory ...]', version=__version__)
 
     #[options]
